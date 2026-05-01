@@ -60,7 +60,7 @@ func TestNew_WithCode_Data_TraceID_Level(t *testing.T) {
 
 func TestSetMessage_SetMessageUser(t *testing.T) {
 	e := New("orig")
-	e.SetMessage("op-msg").SetMessageUser("user-msg")
+	_ = e.SetMessage("op-msg").SetMessageUser("user-msg")
 	if e.Error() != "op-msg" {
 		t.Errorf("Error: got %q", e.Error())
 	}
@@ -74,7 +74,7 @@ func TestKV_FromOption_AndSetter(t *testing.T) {
 		WithKV("first", 1),
 		WithKVMap(map[string]any{"second": 2, "third": "three"}),
 	)
-	e.SetKV("fourth", true)
+	_ = e.SetKV("fourth", true)
 
 	r := e.Response()
 	if r.KV["first"] != 1 || r.KV["second"] != 2 || r.KV["third"] != "three" || r.KV["fourth"] != true {
